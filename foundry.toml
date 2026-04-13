@@ -8,6 +8,10 @@ optimizer_runs = 200
 via_ir = true
 ffi = false
 
+# Style lints (mixedCase for KYC/NFT/P2P, etc.) are noisy for this codebase; run `forge lint` when you want a full pass.
+[profile.default.lint]
+lint_on_build = false
+
 [profile.default.fmt]
 line_length = 120
 tab_width = 4

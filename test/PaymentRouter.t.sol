@@ -79,7 +79,7 @@ contract PaymentRouterTest is Test {
 
     function test_Send_EmitsEvent() public {
         vm.expectEmit(true, true, false, true);
-        emit PaymentRouter.PaymentSent(alice, bob, address(token), AMOUNT, "hello");
+        emit IPaymentRouter.PaymentSent(alice, bob, address(token), AMOUNT, "hello");
 
         vm.prank(alice);
         router.send(address(token), bob, AMOUNT, "hello");

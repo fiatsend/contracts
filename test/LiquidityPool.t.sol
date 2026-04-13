@@ -3,6 +3,7 @@ pragma solidity ^0.8.24;
 
 import {Test} from "forge-std/Test.sol";
 import {LiquidityPool} from "../src/liquidity/LiquidityPool.sol";
+import {ILiquidityPool} from "../src/interfaces/ILiquidityPool.sol";
 import {GHSFIAT} from "../src/tokens/GHSFIAT.sol";
 
 contract LiquidityPoolTest is Test {
@@ -72,7 +73,7 @@ contract LiquidityPoolTest is Test {
 
     function test_Deposit_EmitsEvent() public {
         vm.expectEmit(true, false, false, true);
-        emit LiquidityPool.Deposited(lp1, DEPOSIT_AMOUNT);
+        emit ILiquidityPool.Deposited(lp1, DEPOSIT_AMOUNT);
 
         vm.prank(lp1);
         pool.deposit(DEPOSIT_AMOUNT);

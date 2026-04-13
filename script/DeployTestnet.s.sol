@@ -121,7 +121,10 @@ contract DeployTestnet is Script {
         console.log("[Testnet] Minted", TESTNET_MINT_AMOUNT / 10 ** 18, "GHSFIAT to deployer");
 
         // Seed vault with yield reserve
-        ghsFiat.transfer(address(vaultController), TESTNET_MINT_AMOUNT / 10);
+        require(
+            ghsFiat.transfer(address(vaultController), TESTNET_MINT_AMOUNT / 10),
+            "GHSFIAT transfer to vault failed"
+        );
         console.log("[Testnet] Funded vault with", (TESTNET_MINT_AMOUNT / 10) / 10 ** 18, "GHSFIAT for yield");
 
         vm.stopBroadcast();

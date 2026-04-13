@@ -70,7 +70,7 @@ contract VaultControllerTest is Test {
 
     function test_Deposit_EmitsEvent() public {
         vm.expectEmit(true, false, false, true);
-        emit VaultController.VaultDeposited(user, DEPOSIT_AMOUNT);
+        emit IVault.VaultDeposited(user, DEPOSIT_AMOUNT);
 
         vm.prank(user);
         vault.deposit(DEPOSIT_AMOUNT);
@@ -110,7 +110,7 @@ contract VaultControllerTest is Test {
         vault.deposit(DEPOSIT_AMOUNT);
 
         vm.expectEmit(true, false, false, true);
-        emit VaultController.VaultWithdrawn(user, DEPOSIT_AMOUNT);
+        emit IVault.VaultWithdrawn(user, DEPOSIT_AMOUNT);
 
         vm.prank(user);
         vault.withdraw(DEPOSIT_AMOUNT);
@@ -197,7 +197,7 @@ contract VaultControllerTest is Test {
 
     function test_SetAnnualYieldRate_EmitsEvent() public {
         vm.expectEmit(false, false, false, true);
-        emit VaultController.YieldRateUpdated(1000);
+        emit IVault.YieldRateUpdated(1000);
 
         vm.prank(owner);
         vault.setAnnualYieldRate(1000);

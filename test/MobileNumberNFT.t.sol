@@ -3,6 +3,7 @@ pragma solidity ^0.8.24;
 
 import {Test} from "forge-std/Test.sol";
 import {MobileNumberNFT} from "../src/identity/MobileNumberNFT.sol";
+import {IMobileNumberNFT} from "../src/interfaces/IMobileNumberNFT.sol";
 
 contract MobileNumberNFTTest is Test {
     MobileNumberNFT public nft;
@@ -52,7 +53,7 @@ contract MobileNumberNFTTest is Test {
 
     function test_RegisterMobile_EmitsEvent() public {
         vm.expectEmit(true, true, false, true);
-        emit MobileNumberNFT.MobileNumberRegistered(user1, 1, countryGH);
+        emit IMobileNumberNFT.MobileNumberRegistered(user1, 1, countryGH);
 
         vm.prank(user1);
         nft.registerMobile(phone1, countryGH);

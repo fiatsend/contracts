@@ -4,6 +4,7 @@ pragma solidity ^0.8.24;
 import {Test} from "forge-std/Test.sol";
 import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import {FiatsendGateway} from "../src/payments/FiatsendGateway.sol";
+import {IFiatsendGateway} from "../src/interfaces/IFiatsendGateway.sol";
 import {GHSFIAT} from "../src/tokens/GHSFIAT.sol";
 import {MobileNumberNFT} from "../src/identity/MobileNumberNFT.sol";
 import {Withdrawals} from "../src/payments/Withdrawals.sol";
@@ -111,7 +112,7 @@ contract FiatsendGatewayTest is Test {
         uint256 fee = (AMOUNT * FEE_RATE) / 10_000;
 
         vm.expectEmit(true, true, false, true);
-        emit FiatsendGateway.OfframpInitiated(user, address(ghsFiat), AMOUNT, fee, "0244000000");
+        emit IFiatsendGateway.OfframpInitiated(user, address(ghsFiat), AMOUNT, fee, "0244000000");
 
         vm.prank(user);
         gateway.offramp(address(ghsFiat), AMOUNT, "0244000000");
